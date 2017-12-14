@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <meta charset="UTF-8">
+    <title>Recalls</title>
+    <style>
+        body {
+            background-color: #dbdbdb;
+        }
+
+        input {
+            width: 750px !important;
+            height: 100px !important;
+            font-size: 72px !important;
+            background-color: #FFFFFF !important;
+            display: block !important;
+            margin: 20px auto !important;
+            padding: 20px 16px 20px 16px !important;
+            border-radius: 5px !important;
+            font-family: "Lucida Console", Monaco, monospace !important;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, .55), 0 1px 1px rgba(255, 255, 255, .5);
+            /*box-shadow: 5px 10px 5px #888888 !important;*/
+        }
+    </style>
+</head>
+<body>
+<div class="center-align">
+    <h2>Enter VIN:</h2>
+    <div>
+            <input id="vin_input" type="text" name="VIN" placeholder="VIN Number"
+                   maxlength="17">
+    </div>
+</div>
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/CoreLogic.js"></script>
+</body>
+</html>
