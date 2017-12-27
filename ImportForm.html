@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <style>
+	@import url(https://fonts.googleapis.com/css?family=Roboto);
 	#hiddenForm {
 		display: none;
 	}
@@ -25,6 +26,9 @@
 	}
 	input[type=submit]:hover {
 		background-color: #45a049;
+	}
+	body {
+		text-align: left !important;
 	}
 	*, *:before, *:after {
 		box-sizing: border-box;
@@ -67,39 +71,40 @@
 		height: 6px;
 		border: 2px solid #fff;
 		border-top-style: none;
-		border-right_style: none;
+		border-right-style: none;
 	}
+
 </style>
 <body>
-<form onsubmit="submit()">
+<form name="inputForm" id="inputForm" onsubmit="return submitData();">
 	<fieldset>
 		<legend>Contact Info</legend>
 		Name:
-		<input id="c_name" type="text">
+		<input name="c_name" id="c_name" type="text">
 		Email:
-		<input id="c_email" type="text">
+		<input name="c_email" id="c_email" type="text">
 	</fieldset>
 	<fieldset>
 		<legend>Vehicle Information</legend>
 		VIN:
 		<div style="width: 100%; display:flex;">
 			<div style="display:flex; width: 100%">
-				<input id="v_vin" type="text" placeholder="3GCPKTE37BG201125" maxlength="17">
+				<input name="v_vin" id="v_vin" type="text" placeholder="3GCPKTE37BG201125" maxlength="17">
 			</div>
 			<div style="width: 10em">
 				<button onclick="return decode()">Decode</button>
 			</div>
 		</div>
 		Year:
-		<input id="v_year" type="text" maxlength="17">
+		<input name="v_year" id="v_year" type="text">
 		Make:
-		<input id="v_make" type="text" maxlength="17">
+		<input name="v_make" id="v_make" type="text">
 		Model:
-		<input id="v_model" type="text" maxlength="17">
+		<input name="v_model" id="v_model" type="text">
 		Manufacturer:
-		<input id="v_manufacturer" type="text" maxlength="17">
+		<input name="v_manufacturer" id="v_manufacturer" type="text">
 		Type:
-		<select id="v_type" name="type">
+		<select name="v_type" id="v_type">
 			<option>Truck</option>
 			<option>MPV</option>
 			<option>Car</option>
@@ -109,154 +114,158 @@
 		Mileage:
 		<div style="width: 100%; display:flex;">
 			<div style="display:flex; width: 10em">
-				<select id="v_mileageType">
+				<select name="v_mileageType" id="v_mileageType">
 					<option>Miles</option>
 					<option>Kilometers</option>
 				</select>
 			</div>
 			<div style="width: 100%">
-				<input id="v_mileageValue" type="text" placeholder="23000" maxlength="8">
+				<input name="v_mileageValue" id="v_mileageValue" type="text" placeholder="23000">
 			</div>
 		</div>
 		Build Date:
-		<input id="v_buildDate" type="text" placeholder="08/1997" maxlength="10">
+		<input name="v_buildDate" id="v_buildDate" type="text" placeholder="08/1997">
 		Color:
-		<input id="v_color" type="text" placeholder="Black" maxlength="20">
+		<input name="v_color" id="v_color" type="text" placeholder="Black">
 		Weight:
 		<div style="width: 100%; display:flex;">
 			<div style="display:flex; width: 6em">
-				<select id="v_weightUnit">
+				<select name="v_weightUnit" id="v_weightUnit">
 					<option>LB</option>
 					<option>KG</option>
 				</select>
 			</div>
 			<div style="width: 100%">
-				<input id="v_weightValue" type="text" placeholder="25000" maxlength="20">
+				<input name="v_weightValue" id="v_weightValue" type="text" placeholder="25000">
 			</div>
 		</div>
 		GVWR:
 		<div style="width: 100%; display:flex;">
 			<div style="display:flex; width: 6em">
-				<select id="v_gvwrUnit">
+				<select name="v_gvwrUnit" id="v_gvwrUnit">
 					<option>LB</option>
 					<option>KG</option>
 				</select>
 			</div>
 			<div style="width: 100%">
-				<input id="v_gvwr-Value" type="text" placeholder="8510" maxlength="8">
+				<input name="v_gvwrValue" id="v_gvwrValue" type="text" placeholder="8510">
 			</div>
 		</div>
 		GVWR Front:
 		<div style="width: 100%; display:flex;">
 			<div style="display:flex; width: 6em">
-				<select id="v_gvwrfUnit">
+				<select name="v_gvwrfUnit" id="v_gvwrfUnit">
 					<option>LB</option>
 					<option>KG</option>
 				</select>
 			</div>
 			<div style="width: 100%">
-				<input id="v_gvwrfValue" type="text" placeholder="4500" maxlength="8">
+				<input name="v_gvwrfValue" id="v_gvwrfValue" type="text" placeholder="4500">
 			</div>
 		</div>
 		GVWR Rear:
 		<div style="width: 100%; display:flex;">
 			<div style="display:flex; width: 6em">
-				<select id="v_gvwrrUnit">
+				<select name="v_gvwrrUnit" id="v_gvwrrUnit">
 					<option>LB</option>
 					<option>KG</option>
 				</select>
 			</div>
 			<div style="width: 100%">
-				<input id="v_gvwrrValue" type="text" placeholder="6200" maxlength="8">
+				<input name="v_gvwrrValue" id="v_gvwrrValue" type="text" placeholder="6200">
 			</div>
 		</div>
 		Engine Displacement:
-		<select id="v_engineDisplacement">
+		<select name="v_engineDisplacement" id="v_engineDisplacement">
 			<option>Gas</option>
 			<option>Diesel</option>
 		</select>
 		Engine Size:
-		<input id="v_engineSize" type="text" placeholder="5.7" maxlength="8">
+		<input name="v_engineSize" id="v_engineSize" type="text" placeholder="5.7">
 		Value:
 		<div style="width: 100%; display:flex;">
 			<div style="display:flex; width: 7em">
-				<select id="v_currency">
+				<select name="v_currency" id="v_currency">
 					<option>USD</option>
 					<option>CAD</option>
 				</select>
 			</div>
 			<div style="width: 100%">
-				<input id="v_value" type="text" placeholder="27000" maxlength="8">
+				<input name="v_value" id="v_value" type="text" placeholder="27000">
 			</div>
 		</div>
 		<div class="md-checkbox">
-			<input id="v_epa" type="checkbox">
+			<input name="v_epa" id="v_epa" type="checkbox">
 			<label for="v_epa">EPA Label</label>
+		</div>
+		<div class="md-checkbox">
+			<input name="v_title" id="v_title" type="checkbox">
+			<label for="v_title">Request Title</label>
 		</div>
 	</fieldset>
 	<fieldset>
 		<legend>Tire Information</legend>
 		Front Tire Size:
-		<input id="t_fs" type="text" placeholder="L7285/70 R170" maxlength="17">
+		<input name="t_fs" id="t_fs" type="text" placeholder="L7285/70 R170">
 		Rear Tire Size:
-		<input id="t_rs" type="text" placeholder="L7285/70 R170" maxlength="17">
+		<input name="t_rs" id="t_rs" type="text" placeholder="L7285/70 R170">
 		Front Rims:
-		<input id="t_fr" type="text" placeholder="17x80" maxlength="17">
+		<input name="t_fr" id="t_fr" type="text" placeholder="17x80">
 		Rear Rims:
-		<input id="t_rr" type="text" placeholder="17x80" maxlength="17">
+		<input name="t_rr" id="t_rr" type="text" placeholder="17x80">
 		Front Cold Tire Inflation:
-		<input id="t_fci" type="text" placeholder="60" maxlength="17">
+		<input name="t_fci" id="t_fci" type="text" placeholder="60">
 		Rear Cold Tire Inflation:
-		<input id="t_rci" type="text" placeholder="65" maxlength="17">
+		<input name="t_rci" id="t_rci" type="text" placeholder="65">
 	</fieldset>
 	<fieldset>
 		<legend>Optional Services</legend>
 		<div class="md-checkbox">
-			<input id="v_windshield" type="checkbox">
+			<input name="v_windshield" id="v_windshield" type="checkbox">
 			<label for="v_windshield">Windshield</label>
 		</div>
 		<div class="md-checkbox">
-			<input id="v_bedliner" type="checkbox">
+			<input name="v_bedliner" id="v_bedliner" type="checkbox">
 			<label for="v_bedliner">Bedliner</label>
 		</div>
 		<!--TODO: Only show this if Bedliner is selected-->
 		Size:
-		<input id="v_size" type="text" placeholder="" maxlength="17">
+		<input name="v_size" id="v_size" type="text" placeholder="">
 		<div class="md-checkbox">
-			<input id="v_seat" type="checkbox">
+			<input name="v_seat" id="v_seat" type="checkbox">
 			<label for="v_seat">Seat Repair</label>
 		</div>
 	</fieldset>
 	<fieldset>
 		<legend>Canadian Address</legend>
 		Address:
-		<input id="c_address" type="text" placeholder="1234 Named St" maxlength="17">
+		<input name="c_address" id="c_address" type="text" placeholder="1234 Named St">
 		City, Providence, Postal Code:
-		<input id="c_city" type="text" placeholder="Kelowna, BC, V1Y 34H" maxlength="17">
+		<input name="c_city" id="c_city" type="text" placeholder="Kelowna, BC, V1Y 34H">
 		Phone:
-		<input id="c_phone" type="text" placeholder="+1 555 555 5555" maxlength="17">
+		<input name="c_phone" id="c_phone" type="text" placeholder="+1 555 555 5555">
 	</fieldset>
 	<fieldset>
 		<legend>United States Address</legend>
 		Address:
-		<input id="u_address" type="text" placeholder="1234 Named St" maxlength="17">
+		<input name="u_address" id="u_address" type="text" placeholder="1234 Named St">
 		City, State, ZIP Code:
-		<input id="u_city" type="text" placeholder="Spokane, WA, 99204" maxlength="17">
+		<input name="u_city" id="u_city" type="text" placeholder="Spokane, WA, 99204">
 		Phone:
-		<input id="u_phone" type="text" placeholder="+1 555 555 5555" maxlength="17">
+		<input name="u_phone" id="u_phone" type="text" placeholder="+1 555 555 5555">
 	</fieldset>
 	<fieldset>
 		<legend>Additional Notes</legend>
-		<textarea id="notes"></textarea>
+		<textarea name="notes" id="notes"></textarea>
 	</fieldset>
 	<button>Submit</button>
 </form>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-	function submit() {
-		//TODO: Load information from input form into the output form and submit
-		//Perform conversions on data
-
+	function submitData() {
+		var data = $("#inputForm").serialize();
+		$.get("https://www.vipautoimporters.com/api/v1/mail/importForm/?" + data);
+		return false;
 	}
 	function decode() {
 		var vin = $("#v_vin").val();
