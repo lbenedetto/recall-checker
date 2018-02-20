@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<style>
+	@import url(https://fonts.googleapis.com/css?family=Roboto);
+	#hiddenForm {
+		display: none;
+	}
+	input[type=text], select {
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
+	input[type=submit] {
+		width: 100%;
+		background-color: #4CAF50;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	input[type=submit]:hover {
+		background-color: #45a049;
+	}
+	body {
+		text-align: left !important;
+	}
+	*, *:before, *:after {
+		box-sizing: border-box;
+	}
+	.md-checkbox {
+		position: relative;
+		margin: 16px 0;
+	}
+	.md-checkbox label {
+		cursor: pointer;
+	}
+	.md-checkbox label:before, .md-checkbox label:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.md-checkbox label:before {
+		width: 20px;
+		height: 20px;
+		background: #fff;
+		border: 2px solid rgba(0, 0, 0, 0.54);
+		border-radius: 2px;
+		cursor: pointer;
+		transition: background .3s;
+	}
+	.md-checkbox input[type="checkbox"] {
+		outline: 0;
+		margin-right: 10px;
+	}
+	.md-checkbox input[type="checkbox"]:checked + label:before {
+		background: #337ab7;
+		border: none;
+	}
+	.md-checkbox input[type="checkbox"]:checked + label:after {
+		transform: rotate(-45deg);
+		top: 5px;
+		left: 4px;
+		width: 12px;
+		height: 6px;
+		border: 2px solid #fff;
+		border-top-style: none;
+		border-right-style: none;
+	}
+
+</style>
+<body>
+<form name="inputForm" id="inputForm" onsubmit="return submitData();">
+	<fieldset>
+		<legend>Contact Info</legend>
+		Name:
+		<input name="c_name" id="c_name" type="text">
+		Email:
+		<input name="c_email" id="c_email" type="text">
+	</fieldset>
+	<fieldset>
+		US Port of Crossing:
+		<input name="v_poc" id="v_poc" type="text">
+		Approximate Crossing Date:
+		<input name="v_acd" id="v_acd" type="text">
+		Mode of Transport:
+		<input name="v_mot" id="v_mot" type="text">
+		Carrier or Transporter Name:
+		<input name="v_ctn" id="v_ctn" type="text">
+		<div class="md-checkbox">
+			<input name="v_rel" id="v_rel" type="checkbox">
+			<label for="v_rel">Importing and Exporting companies are related</label>
+		</div>
+		<div class="md-checkbox">
+			<input name="v_haz" id="v_haz" type="checkbox">
+			<label for="v_haz">Hazardous merchandise on shipment</label>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>U.S. Seller (Exporter)</legend>
+		Company Name:
+		<input name="us_con" id="us_con" type="text">
+		Address:
+		<input name="us_add" id="us_add" type="text">
+		City:
+		<input name="us_cit" id="us_cit" type="text">
+		State:
+		<input name="us_sta" id="us_sta" type="text">
+		Zip Code:
+		<input name="us_zip" id="us_zip" type="text">
+		Contact Name:
+		<input name="us_cont" id="us_cont" type="text">
+		Phone Number:
+		<input name="us_pho" id="us_pho" type="text">
+		EIN/FIN Number:
+		<input name="us_ein" id="us_ein" type="text">
+		Passport Number (if Canadian):
+		<input name="us_pass" id="us_pass" type="text">
+	</fieldset>
+	<fieldset>
+		<legend>Canadian Buyer (Importer)</legend>
+		Company Name:
+		<input name="c_con" id="c_con" type="text">
+		Contact Name:
+		<input name="c_cona" id="c_cona" type="text">
+		Address:
+		<input name="c_add" id="c_add" type="text">
+		City:
+		<input name="c_cit" id="c_cit" type="text">
+		Postal Code:
+		<input name="c_pos" id="c_pos" type="text">
+	</fieldset>
+	<fieldset>
+		<legend>Vehicle Information</legend>
+		VIN:
+		<div style="width: 100%; display:flex;">
+			<div style="display:flex; width: 100%">
+				<input name="v_vin" id="v_vin" type="text" placeholder="3GCPKTE37BG201125" maxlength="17">
+			</div>
+			<div style="width: 10em">
+				<button onclick="return decode()">Decode</button>
+			</div>
+		</div>
+		Year:
+		<input name="v_year" id="v_year" type="text">
+		Make:
+		<input name="v_make" id="v_make" type="text">
+		Model:
+		<input name="v_model" id="v_model" type="text">
+		Type:
+		<select name="v_type" id="v_type">
+			<option>Truck</option>
+			<option>MPV</option>
+			<option>Car</option>
+			<option>M/C</option>
+			<option>Trailer</option>
+		</select>
+		Gas Type:
+		<select name="v_type" id="v_gastype">
+			<option>Gas</option>
+			<option>Diesel</option>
+		</select>
+		Weight:
+		<div style="width: 100%; display:flex;">
+			<div style="display:flex; width: 6em">
+				<select name="v_weightUnit" id="v_weightUnit">
+					<option>LB</option>
+					<option>KG</option>
+				</select>
+			</div>
+			<div style="width: 100%">
+				<input name="v_weightValue" id="v_weightValue" type="text" placeholder="25000">
+			</div>
+		</div>
+		Value:
+		<div style="width: 100%; display:flex;">
+			<div style="display:flex; width: 7em">
+				<select name="v_currency" id="v_currency">
+					<option>USD</option>
+					<option>CAD</option>
+				</select>
+			</div>
+			<div style="width: 100%">
+				<input name="v_value" id="v_value" type="text" placeholder="27000">
+			</div>
+		</div>
+		<div class="md-checkbox">
+			<input name="v_air" id="v_air" type="checkbox">
+			<label for="v_air">Has Air Conditioning</label>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Additional Notes</legend>
+		<textarea name="notes" id="notes"></textarea>
+	</fieldset>
+	<button>Submit</button>
+</form>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	function submitData() {
+		var data = $("#inputForm").serialize();
+		$.get("https://www.vipautoimporters.com/api/v1/mail/exportForm/?" + data);
+		return false;
+	}
+	function decode() {
+		var vin = $("#v_vin").val();
+		var url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/"+vin+"?format=json";
+		$.get(url, handleDecodedVin);
+		return false;
+	}
+	function handleDecodedVin(response){
+		var res = response["Results"];
+		$("#v_make").val(res[5]["Value"]);
+		$("#v_model").val(res[7]["Value"]);
+		$("#v_year").val(res[8]["Value"]);
+	}
+</script>
+</body>
+</html>

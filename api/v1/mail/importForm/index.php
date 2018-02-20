@@ -1,7 +1,8 @@
 <?php
+include '../util.php';
 //Constants
-$to = "larsbenedetto@gmail.com";
-//$to = "viptraders2@gmail.com";
+//$to = "larsbenedetto@gmail.com";
+$to = "viptraders2@gmail.com";
 $subject = "Import Request";
 $MtoKM = 1.60934;
 $KMtoM = 0.621371;
@@ -153,17 +154,3 @@ $headers .= 'From: <'. $_REQUEST["c_email"] . '>' . "\r\n";
 //Send!
 mail($to, $subject, $html, $headers);
 echo $html;
-
-function getCurrentExchangeRate(){
-	// create curl resource
-	$ch = curl_init();
-	// set url
-	curl_setopt($ch, CURLOPT_URL, "https://api.fixer.io/latest?base=USD&symbols=USD,CAD");
-	//return the transfer as a string
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	// $output contains the output string
-	$output = curl_exec($ch);
-	// close curl resource to free up system resources
-	curl_close($ch);
-	return $output;
-}
